@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  border: 2px solid red;
+}
+
+:host(.active){
+  border: 1px solid rgb(119, 255, 0);
+}
+
+:host-context(.theme-light) h2 {
+  background-color: rgb(194, 244, 244);
+}

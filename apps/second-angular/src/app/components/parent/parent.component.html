@@ -1,5 +1,9 @@
-<app-child 
+<h2>h2 in parent</h2>
+<ng-content [question]></ng-content>
+<ng-content [answer]></ng-content>
+<app-child
 [childMessage]="'hello from parent to child'"
 (outputEvent)="receiveMessage($event)"
-
-></app-child>
+class="childEl"
+>
+</app-child>

@@ -27,8 +27,6 @@ export class TasksComponent {
 
   addTask(newTask: Task) {
     this.taskService.addTask(newTask).subscribe(task => this.tasks.push(task))
-    
-    
   }
 
   toggleReminder(task: Task) {

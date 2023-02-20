@@ -15,6 +15,6 @@ export class ParentComponent {
   }
 
   ngAfterViewInit() {
-    alert(this.child.message)
+    console.log(this.child.message)
   }
 }

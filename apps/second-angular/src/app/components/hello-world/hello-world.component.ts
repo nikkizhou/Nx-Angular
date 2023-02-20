@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   
 export class HelloWorldComponent {
 
-  title='Hello World'
+  title='Hello World Component is here'
 }

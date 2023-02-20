@@ -7,12 +7,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class AppComponent implements OnInit, OnDestroy{
   title = 'second-angular';
-  intervalSub:any
+  intervalSub: any
+  showText: boolean = false
+  todaysDate: Date = new Date()
+  itemImageUrl: string = '../assets/photo.png'
+  fontSizepx:number = 16
+  
+  toggleText(event:any) {
+    this.showText = !this.showText
+    console.log(event);
+  }
 
   ngOnInit() {
     this.intervalSub = setInterval(() => {
-      console.log('hello from interval');
-    },1000)
+      console.log('hello from interval in app component');
+    },10000)
   }
 
   ngOnDestroy(): void {

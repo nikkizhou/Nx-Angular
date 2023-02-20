@@ -8,6 +8,9 @@ import { appRoutes } from './app.routes';
 import { HelloWorldComponent } from './components/hello-world/hello-world.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { ChildComponent } from './components/child/child.component';
+import { GreetingPipePipe } from './pipes/greeting-pipe.pipe';
+import { AppSizerComponent } from './components/app-sizer/app-sizer.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { ChildComponent } from './components/child/child.component';
     HelloWorldComponent,
     ParentComponent,
     ChildComponent,
+    GreetingPipePipe,
+    AppSizerComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,

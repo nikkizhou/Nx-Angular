@@ -1,4 +1,28 @@
-getThree() in app component: {{getThree( )}}
+getThree() in app component: {{getThree()}}
+<div class="theme-light">
+
+<h2>Date Pipe: {{todaysDate | date:'short'}}</h2>
+<h2>{{'Hello Pipe' | greetingPipe}}</h2>
+
+<img [src]="itemImageUrl">
+<div [style]="{
+  width:'50px',
+  height:'50px',
+  background:'red'
+}"></div>
+
+<app-sizer [(size)]="fontSizepx"></app-sizer>
+<div [style.font-size.px]="fontSizepx">Resizable text</div>
+
+<p [appHighlight] = "'red'">appHighlight test</p>
+
 <app-hello-world></app-hello-world>
-<app-parent></app-parent>
+<app-parent  class="active">
+  <p question>ng-content, question</p>
+  <p answer>ng-content, answer</p>
+</app-parent>
+<button (click)="toggleText($event)">Toggle Text</button>
+{{showText}}
 <router-outlet></router-outlet>
+
+</div>
