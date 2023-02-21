@@ -1,28 +1,57 @@
 getThree() in app component: {{getThree()}}
 <div class="theme-light">
 
-<h2>Date Pipe: {{todaysDate | date:'short'}}</h2>
-<h2>{{'Hello Pipe' | greetingPipe}}</h2>
+  <h2>Date Pipe: {{todaysDate | date:'short'}}</h2>
+  <h2>{{'Hello Pipe' | greetingPipe}}</h2>
 
-<img [src]="itemImageUrl">
-<div [style]="{
-  width:'50px',
-  height:'50px',
-  background:'red'
-}"></div>
+  <img [src]="itemImageUrl">
+  <div [style]="{
+    width:'50px',
+    height:'50px',
+    background:'yellow',
+    margin:'50px'
+  }"> Style Binding</div>
 
-<app-sizer [(size)]="fontSizepx"></app-sizer>
-<div [style.font-size.px]="fontSizepx">Resizable text</div>
+  <app-sizer [(size)]="fontSizepx"></app-sizer>
+  <div [style.font-size.px]="fontSizepx">Resizable text</div>
 
-<p [appHighlight] = "'red'">appHighlight test</p>
+  <p [appHighlight] = "'red'">appHighlight test</p>
 
-<app-hello-world></app-hello-world>
-<app-parent  class="active">
-  <p question>ng-content, question</p>
-  <p answer>ng-content, answer</p>
-</app-parent>
-<button (click)="toggleText($event)">Toggle Text</button>
-{{showText}}
-<router-outlet></router-outlet>
+  <app-hello-world></app-hello-world>
+  <app-parent  class="active">
+    <p question>ng-content, question</p>
+    <p answer>ng-content, answer</p>
+  </app-parent>
+  <button (click)="toggleText($event)">Toggle Text</button>
+  {{showText}}
+  <router-outlet></router-outlet>
 
+</div>
+
+<div [hidden]="submitted">
+  <p>{{model | json}}</p>
+  <form #petForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        [(ngModel)]="model.name"
+        required>
+    </div>
+    <div>
+      <label for="specie">Specie</label>
+      <select id="specie" required [(ngModel)]="model.specie" name="specie">
+        <option *ngFor="let specie of species" [value]="specie">{{specie}}</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="!petForm.form.valid">Submit </button>
+  </form>
+</div>
+<div [hidden]="!submitted">
+  <h2>You submitted</h2>
+  <p>Name:{{model.name}}</p>
+  <p>specie:{{model.specie}}</p>
+  <button (click)="submitted=false">Edit</button>
 </div>

@@ -11,6 +11,7 @@ import { ChildComponent } from './components/child/child.component';
 import { GreetingPipePipe } from './pipes/greeting-pipe.pipe';
 import { AppSizerComponent } from './components/app-sizer/app-sizer.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HighlightDirective } from './directives/highlight.directive';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Pet } from './modules/pet.module';
 
 @Component({
   selector: 'first-root',
@@ -11,7 +12,15 @@ export class AppComponent implements OnInit, OnDestroy{
   showText: boolean = false
   todaysDate: Date = new Date()
   itemImageUrl: string = '../assets/photo.png'
-  fontSizepx:number = 16
+  fontSizepx: number = 16
+  species = ['fish', 'cat', 'dog']
+  
+  model = new Pet(1, 'Bob', this.species[0]);
+  submitted = false;
+
+  onSubmit() {
+    this.submitted = true
+  }
   
   toggleText(event:any) {
     this.showText = !this.showText
