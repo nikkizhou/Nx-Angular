@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pet } from './modules/pet.module';
-import { FormGroup,FormControl } from '@angular/forms'
+import { FormGroup,FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'first-root',
@@ -24,6 +24,15 @@ export class AppComponent implements OnInit, OnDestroy{
     firstName: new FormControl(''),
     lastName: new FormControl('')
   })
+
+  nameInput=''
+  validationForm = new FormGroup({
+    name: new FormControl(this.nameInput,[Validators.required,Validators.minLength(4)]),
+  })
+
+  get name() {
+    return this.validationForm.get('name')
+  }
 
   onProfileSubmit() {
     console.log(this.profileForm.value);

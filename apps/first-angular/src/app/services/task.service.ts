@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TASKS } from './../mock-tasks'
 import { Task } from './../Task';
-import { Observable, of } from 'rxjs'
+import { catchError, Observable, of, throwError } from 'rxjs'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':'application/json'
+    'Content-Type': 'application/json',
+    //'Authorization':"My api key"
   })
 }
 
@@ -22,6 +24,12 @@ export class TaskService {
   getTasks(): Observable<Task[]>{
     // httpClient returns observable automatically
     return this.http.get<Task[]>(this.apiUrl)
+      .pipe(catchError(
+        err => {
+          console.log(err)
+          return throwError(() => new Error('Error getting tasks'))
+        }
+      ))
   }
 
   deleteTask(task: Task): Observable<Task>{

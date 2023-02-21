@@ -31,7 +31,7 @@
 <!-- template driven form-->
 <div [hidden]="submitted" [style.margin.px]="60">
   <p>{{model | json}}</p>
-  <form #petForm="ngForm" (ngSubmit)="onSubmit()">
+  <form #petForm="ngForm" (ngSubmit)="onSubmit()" >
     <div>
       <label for="name">Name</label>
       <input 
@@ -39,6 +39,7 @@
         id="name" 
         name="name" 
         [(ngModel)]="model.name"
+        minLength="4"
         required>
     </div>
     <div>
@@ -60,7 +61,12 @@
 <!-- reactive form-->
 <div [style.margin.px]="60">
   <label for="reactiveFormName">Name:</label>
-  <input id="reactiveFormName" type="text" [formControl]="reactiveFormName">
+  <input 
+    id="reactiveFormName" 
+    type="text"
+    [formControl]="reactiveFormName"
+    >
+    
   <p>Value: {{reactiveFormName.value}}</p>
   <button (click)="updateFormName()">Update</button>
 </div>
@@ -72,4 +78,27 @@
   <label for="last-name">Last Name: </label>
   <input id="last-name" type="text" formControlName="lastName"/>
   <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
+
+
+<!--form validation-->
+<form>
+  <input 
+    type="text" 
+    name="name" 
+    required 
+    minLength="4" 
+    [(ngModel)]="nameInput" 
+    #name="ngModel" 
+    [style.margin.px]="60">
+  <div *ngIf="name.invalid && (name.dirty|| name.touched)">
+    <div *ngIf="name.errors?.['required']">
+      Name is required
+    </div>
+    <div *ngIf="name.errors?.['minLength']">
+      Name must be at least 4 characters
+    </div>
+  </div>
+
+
 </form>
