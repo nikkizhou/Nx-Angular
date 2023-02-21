@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pet } from './modules/pet.module';
+import { FormGroup,FormControl } from '@angular/forms'
 
 @Component({
   selector: 'first-root',
@@ -17,6 +18,21 @@ export class AppComponent implements OnInit, OnDestroy{
   
   model = new Pet(1, 'Bob', this.species[0]);
   submitted = false;
+
+  reactiveFormName = new FormControl()
+  profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl('')
+  })
+
+  onProfileSubmit() {
+    console.log(this.profileForm.value);
+    
+  }
+
+  updateFormName() {
+    this.reactiveFormName.setValue('Nancy')
+  }
 
   onSubmit() {
     this.submitted = true
@@ -37,7 +53,4 @@ export class AppComponent implements OnInit, OnDestroy{
       this.intervalSub && clearInterval(this.intervalSub)
   }
 
-  getThree() {
-    return 3;
-  }
 }
