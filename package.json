@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "server":"json-server --watch db.json"
+    "server": "json-server --watch db.json"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +19,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@nrwl/angular": "15.7.1",
+    "bootstrap": "^5.2.3",
+    "font-awesome": "^4.7.0",
     "json-server": "^0.17.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -41,6 +43,7 @@
     "@nrwl/nx-cloud": "latest",
     "@nrwl/workspace": "15.7.1",
     "@schematics/angular": "~15.1.0",
+    "@types/jasmine": "~4.0.0",
     "@types/jest": "28.1.1",
     "@types/node": "16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
@@ -49,9 +52,15 @@
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "jasmine-core": "~4.1.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "jest-preset-angular": "~12.2.3",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0",
     "nx": "15.7.1",
     "prettier": "^2.6.2",
     "ts-jest": "28.0.5",
