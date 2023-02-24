@@ -9,17 +9,31 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { FormsModule } from '@angular/forms';
 import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
 import { StarComponent } from './components/star/star.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
+
+const myRoutes = [
+  { path: "products", component:ProductListComponent},
+  { path: "products:id", component:ProductDetailComponent},
+  { path: "welcome", component:WelcomeComponent},
+  { path: "", redirectTo:"welcome",pahtMatch:"full"},
+  { path: "**", redirectTo:"welcome",pahtMatch:"full"},
+]
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    StarComponent],
+    StarComponent,
+    ProductDetailComponent,
+    WelcomeComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    HttpClientModule,
+    RouterModule.forRoot(myRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],
   bootstrap: [AppComponent],
