@@ -11,11 +11,16 @@ import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
 import { StarComponent } from './components/star/star.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductDetailGuard } from './guards/product-detail.guard';
 
 
 const myRoutes:any = [
   { path: "products", component:ProductListComponent},
-  { path: "products:id", component:ProductDetailComponent},
+  {
+    path: "products/:id",
+    canActivate: [ProductDetailGuard],
+    component: ProductDetailComponent
+  },
   { path: "welcome", component:WelcomeComponent},
   { path: "", redirectTo: "welcome", pathMatch: 'full' },
   { path: "**", redirectTo: "welcome", pathMatch: 'full' }
