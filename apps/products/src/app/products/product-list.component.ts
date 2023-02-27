@@ -1,62 +1,52 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
 import { Subscription } from 'rxjs';
-import { IProduct } from './product';
+
+import { Product } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-  selector: 'app-products',
+  selector: 'pm-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit, OnDestroy{
-  pageTitle:string = 'Product List';
-  products: IProduct[] = []
-  showImage:boolean = true
-  private _listFilter = ''
-  filteredProducts: IProduct[] = []
-  errMsg: string = ''
+export class ProductListComponent implements OnInit, OnDestroy {
+  pageTitle = 'Products';
+  errorMessage!: string;
+  displayCode!: boolean;
+  products!: Product[];
+
+  // Used to highlight the selected product in the list
+  selectedProduct!: Product | null;
   sub!: Subscription;
-  
-  constructor(private productService:ProductService) {
-  }
 
-  get listFilter():string {
-    return this._listFilter
-  }
-  set listFilter(value:string){
-    this._listFilter = value
-    this.filteredProducts = this.performFilter(value)
-  }
+  constructor(private productService: ProductService) { }
 
-  performFilter(filterBy: string):IProduct[] {
-    return this.products
-      .filter((p: IProduct) =>
-      p.productName.toLowerCase()
-      .includes(filterBy.toLowerCase())
-    )
-  }
+  ngOnInit(): void {
+    this.sub = this.productService.selectedProductChanges$.subscribe(
+      currentProduct => this.selectedProduct = currentProduct
+    );
 
-  toggleImage() {
-    this.showImage = !this.showImage
-  }
-
-  ngOnInit(): void{
-    this.sub = this.productService.getProducts().subscribe({
-      next: products => {
-        this.products = products
-        // ??? filteredProducts is empty until the filterBy is set
-        this.filteredProducts = this.products
-      },
-      error: e=>this.errMsg=e
-    })
+    this.productService.getProducts().subscribe({
+      next: (products: Product[]) => this.products = products,
+      error: err => this.errorMessage = err
+    });
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-
-  onRatingClicked(message:string): void{
-    this.pageTitle="Product List: " + message
+  checkChanged(): void {
+    this.displayCode = !this.displayCode;
   }
+
+  newProduct(): void {
+    this.productService.changeSelectedProduct(this.productService.newProduct());
+  }
+
+  productSelected(product: Product): void {
+    this.productService.changeSelectedProduct(product);
+  }
+
 }
