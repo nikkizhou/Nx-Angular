@@ -1,8 +1,10 @@
 ### Reference:
 1. Angular:   
 https://www.youtube.com/watch?v=3dHNOWTI7H8  
+https://www.youtube.com/watch?v=AAu8bjj6-UI  
 https://app.pluralsight.com/library/courses/angular-2-getting-started-update/table-of-contents  
 <br>
+
 2. Nx: https://www.youtube.com/playlist?list=PLakNactNC1dH38AfqmwabvOszDmKriGco
 
 
